@@ -20,6 +20,20 @@
     --global-color-primary-800: #003438;
     --global-color-primary-900: #001a0f;
 
+    /* secondary color yellow */
+
+    --global-color-secondary-000: #fff9e6;
+    --global-color-secondary-050: #fff2b3;
+    --global-color-secondary-100: #ffe980;
+    --global-color-secondary-200: #ffe04d;
+    --global-color-secondary-300: #ffd91a;
+    --global-color-secondary-400: #e6c900;
+    --global-color-secondary-500: #bfa200;
+    --global-color-secondary-600: #998000;
+    --global-color-secondary-700: #735d00;
+    --global-color-secondary-800: #4d3a00;
+    --global-color-secondary-900: #261700;
+
     --global-color-neutral-000: white;
     --global-color-neutral-050: #f7f7f7;
     --global-color-neutral-100: #e1e1e1;
@@ -33,10 +47,11 @@
     --global-color-neutral-900: #222222;
 
     /* global page settings */
-    --global-page-backgroundColor: var(--global-color-neutral-000);
-    --global-page-color: var(--global-color-neutral-900);
-    --global-selection-backgroundColor: var(--global-color-primary-100);
-    --global-meta-color: var(--global-color-neutral-500);
+    --global-page-backgroundColor: var(--global-color-secondary-200);
+    /* --global-page-foregroundColor: var(--global-color-secondary-050); */
+    --global-page-foregroundColor: white;
+    --global-page-color: var(--global-color-secondary-800);
+    --global-selection-backgroundColor: var(--global-color-secondary-100);
 
     /* forms */
     --global-placeholder-color: var(--global-color-neutral-400);
@@ -48,6 +63,10 @@
     /* transitions */
     --global-transitionDuration-alpha: 0.2s;
     --global-transitionEasing-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* fonts */
+    --global-fontFamily: "Inter", sans-serif;
+    --global-fontFamily-silly: "Balsamiq Sans", sans-serif;
 
     /* Baseline settings */
     --global-baseline: 8px;
@@ -72,8 +91,8 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --global-page-color: var(--global-color-neutral-050);
-        --global-page-backgroundColor: var(--global-color-neutral-900);
+        --global-page-color: var(--global-color-secondary-100);
+        --global-page-backgroundColor: var(--global-color-secondary-900);
     }
 }
 
@@ -90,9 +109,9 @@
 html {
     background-color: var(--global-page-backgroundColor);
     color: var(--global-page-color);
-    font-size: 16px;
+    font-size: 100%;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: "Inter", Helvetica, arial, sans-serif;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -294,34 +313,6 @@ input::placeholder {
 }
 
 /*
-    Objects: section
-    ---
-    Creates vertical whitespace between adjacent sections inside a row
-*/
-
-.o-section {
-    position: relative;
-}
-
-.o-section+.o-section {
-    padding-top: var(--global-whitespace);
-}
-
-@media (min-width: 768px) {
-
-    .o-section--lg+.o-section--lg,
-    .o-section--xl+.o-section--xl {
-        padding-top: var(--global-whitespace-lg);
-    }
-}
-
-@media (min-width: 992px) {
-    .o-section--xl+.o-section--xl {
-        padding-top: var(--global-whitespace-xxl);
-    }
-}
-
-/*
     Objects: Layout
     ---
     The layout object provides us with a column-style layout system. This object
@@ -512,30 +503,87 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Balsamiq Sans', cursive;
 }
 
-.c-main {}
+.c-joke {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: var(--global-whitespace);
+}
 
-.c-joke__title {
-    font-size: 1rem;
+.c-joke__button {
+    /* --joke-color: var(--global-color-secondary-700);
+    color: var(--global-color-secondary-700); */
+    display: inline-flex;
+    align-items: center;
+    margin: 0 var(--global-whitespace) var(--global-whitespace) auto;
+    justify-content: center;
+    width: 4rem;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    border: 2px solid currentColor;
+    /* background-color: var(--global-page-foregroundColor); */
+
+    &.loading {
+        & svg {
+            transition: all 1s;
+            transform: rotate(360deg);
+        }
+    }
+}
+
+/*
+.c-joke__footer {
+    margin-top: auto;
+} */
+
+.c-joke__logo {
+    font-size: .875rem;
     line-height: 1.5;
-    font-weight: normal;
+    font-family: var(--global-fontFamily-silly);
+    /* font-weight: normal; */
+    display: flex;
+    align-items: center;
+    gap: var(--global-whitespace-sm);
+}
+
+.c-joke__smiley {
+    display: inline-block;
+    width: 1.5rem;
+    height: auto;
+}
+
+.c-joke__body {
+    max-width: 70rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.c-joke__icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: auto;
 }
 
 .c-joke__content {
     font-size: 3rem;
     line-height: 1.2;
     font-weight: 700;
+    /* font-family: "Inter Tight", Helvetica, arial, sans-serif; */
+    font-family: "Balsamiq Sans", Helvetica, arial, sans-serif;
+    text-wrap: balance;
 }
 
 .c-info {
     font-size: .875rem;
-    color: var(--global-meta-color);
+    opacity: .5;
 
     & a {
-        --link-color: var(--global-meta-color);
-        --link-visisted-color: var(--global-meta-color);
+        --link-color: inherit;
+        --link-visisted-color: inherit;
     }
 }
 

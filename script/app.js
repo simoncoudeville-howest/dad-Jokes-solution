@@ -1,7 +1,8 @@
 const jokeContainer = document.querySelector('.js-joke-container'),
   jokeError = document.querySelector('.js-joke-error'),
   jokeLoading = document.querySelector('.js-joke-loading'),
-  jokeErrorMessage = document.querySelector('.js-joke-error-message')
+  jokeErrorMessage = document.querySelector('.js-joke-error-message'),
+  newJokeButton = document.querySelector('.js-new-joke')
 
 const renderJoke = (joke) => {
   const jokeElement = document.querySelector('.js-joke-content')
@@ -38,9 +39,13 @@ const newJoke = async () => {
 }
 
 const listenForNewJoke = () => {
-  const newJokeButton = document.querySelector('.js-new-joke')
+
   newJokeButton.addEventListener('click', async () => {
-    newJoke()
+    newJoke();
+    newJokeButton.classList.add("loading");
+    newJokeButton.addEventListener('transitionend', () => {
+      newJokeButton.classList.remove("loading");
+    })
   })
 }
 
