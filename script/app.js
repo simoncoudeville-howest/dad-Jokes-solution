@@ -43,7 +43,7 @@ const listenForNewJoke = () => {
   newJokeButton.addEventListener('click', async () => {
     newJoke();
     newJokeButton.classList.add("loading");
-    newJokeButton.addEventListener('transitionend', () => {
+    newJokeButton.querySelector(".js-button-icon").addEventListener('transitionend', () => {
       newJokeButton.classList.remove("loading");
     })
   })

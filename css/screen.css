@@ -8,19 +8,8 @@
 
 :root {
     /* Global colors */
-    --global-color-primary-000: #e6f6ff;
-    --global-color-primary-050: #b3e6ff;
-    --global-color-primary-100: #80d6ff;
-    --global-color-primary-200: #4dc6ff;
-    --global-color-primary-300: #1ab6ff;
-    --global-color-primary-400: #009cdb;
-    --global-color-primary-500: #0082b2;
-    --global-color-primary-600: #00688a;
-    --global-color-primary-700: #004e61;
-    --global-color-primary-800: #003438;
-    --global-color-primary-900: #001a0f;
 
-    /* secondary color yellow */
+    /* yellow */
 
     --global-color-secondary-000: #fff9e6;
     --global-color-secondary-050: #fff2b3;
@@ -48,10 +37,9 @@
 
     /* global page settings */
     --global-page-backgroundColor: var(--global-color-secondary-200);
-    /* --global-page-foregroundColor: var(--global-color-secondary-050); */
-    --global-page-foregroundColor: white;
     --global-page-color: var(--global-color-secondary-800);
-    --global-selection-backgroundColor: var(--global-color-secondary-100);
+
+    --global-selection-backgroundColor: var(--global-color-secondary-500);
 
     /* forms */
     --global-placeholder-color: var(--global-color-neutral-400);
@@ -63,6 +51,7 @@
     /* transitions */
     --global-transitionDuration-alpha: 0.2s;
     --global-transitionEasing-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --global-transitionEasing-in: cubic-bezier(0.4, 0, 1, 1);
 
     /* fonts */
     --global-fontFamily: "Inter", sans-serif;
@@ -135,6 +124,7 @@ body {
 */
 
 ::selection {
+
     background: var(--global-selection-backgroundColor);
     text-shadow: none;
 }
@@ -498,13 +488,6 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .c-joke {
     display: flex;
     flex-direction: column;
@@ -515,8 +498,6 @@ body {
 }
 
 .c-joke__button {
-    /* --joke-color: var(--global-color-secondary-700);
-    color: var(--global-color-secondary-700); */
     display: inline-flex;
     align-items: center;
     margin: 0 var(--global-whitespace) var(--global-whitespace) auto;
@@ -525,13 +506,18 @@ body {
     aspect-ratio: 1/1;
     border-radius: 100%;
     border: 2px solid currentColor;
+    transition: all var(--global-transitionDuration-alpha) var(--global-transitionEasing-out);
     /* background-color: var(--global-page-foregroundColor); */
 
     &.loading {
         & svg {
-            transition: all 1s;
+            transition: all .75s var(--global-transitionEasing-out);
             transform: rotate(360deg);
         }
+    }
+
+    &:active {
+        transform: scale(.95);
     }
 }
 
@@ -557,7 +543,7 @@ body {
 }
 
 .c-joke__body {
-    max-width: 70rem;
+    max-width: 60rem;
     margin: 0 auto;
     text-align: center;
 }
@@ -569,7 +555,8 @@ body {
 }
 
 .c-joke__content {
-    font-size: 3rem;
+    /* font-size: 3rem; */
+    font-size: clamp(1.5rem, 3.75vw + 0.75rem, 3rem);
     line-height: 1.2;
     font-weight: 700;
     /* font-family: "Inter Tight", Helvetica, arial, sans-serif; */
