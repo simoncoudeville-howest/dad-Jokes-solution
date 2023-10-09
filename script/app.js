@@ -10,13 +10,29 @@ const getJoke = () => {
       Accept: 'application/json',
     },
   })
+    .catch((e) => {
+      console.log(e)
+      // TODO: show error
+    })
     .then((r) => r.json())
-    .finally(() => {})
+    .finally(() => {
+      // TODO: remove loading state
+    })
+}
+
+const listenForNewJoke = () => {
+  const newJokeButton = document.querySelector('.js-new-joke')
+  newJokeButton.addEventListener('click', async () => {
+    const joke = await getJoke()
+    renderJoke(joke)
+  })
 }
 
 const init = async function () {
   const joke = await getJoke()
   renderJoke(joke)
+
+  listenForNewJoke()
 }
 
 init()
