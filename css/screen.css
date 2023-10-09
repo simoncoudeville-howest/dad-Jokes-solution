@@ -37,6 +37,7 @@
     --global-page-backgroundColor: var(--global-color-neutral-000);
     --global-page-color: var(--global-color-neutral-900);
     --global-selection-backgroundColor: var(--global-color-primary-100);
+    --global-meta-color: var(--global-color-neutral-500);
 
     /* forms */
     --global-placeholder-color: var(--global-color-neutral-400);
@@ -279,13 +280,6 @@ input::placeholder {
     padding-bottom: var(--global-whitespace);
 }
 
-@media (min-width: 768px) {
-    .o-row {
-        padding-left: var(--global-whitespace-lg);
-        padding-right: var(--global-whitespace-lg);
-    }
-}
-
 /*
     Objects: Container
     ---
@@ -514,7 +508,37 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Balsamiq Sans', cursive;
+}
 
+.c-main {}
+
+.c-joke__title {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: normal;
+}
+
+.c-joke__content {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.c-info {
+    font-size: .875rem;
+    color: var(--global-meta-color);
+
+    & a {
+        --link-color: var(--global-meta-color);
+        --link-visisted-color: var(--global-meta-color);
+    }
+}
 
 /*------------------------------------*\
 #UTILITIES
