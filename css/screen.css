@@ -543,8 +543,6 @@ input::placeholder {
 }
 
 .c-joke__body {
-    max-width: 60rem;
-    margin: 0 auto;
     text-align: center;
 }
 
@@ -555,6 +553,8 @@ input::placeholder {
 }
 
 .c-joke__content {
+    max-width: 60rem;
+    margin: 0 auto;
     /* font-size: 3rem; */
     font-size: clamp(1.5rem, 3.75vw + 0.75rem, 3rem);
     line-height: 1.2;
@@ -572,6 +572,56 @@ input::placeholder {
         --link-color: inherit;
         --link-visisted-color: inherit;
     }
+}
+
+.c-skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--global-whitespace-sm);
+    position: relative;
+    opacity: .5;
+    margin-bottom: 0;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        /* opacity: .5; */
+        opacity: .75;
+        transform: translateX(-100%);
+        background-image: linear-gradient(90deg, transparent 20%, var(--global-color-secondary-200) 49%, var(--global-color-secondary-200) 51%, transparent 80%);
+        animation: shimmer 2s infinite;
+    }
+}
+
+.c-skeleton__box {
+    display: block;
+    height: .75em;
+    width: 90%;
+    background-color: var(--global-page-color);
+    margin: 0;
+    border-radius: 2em;
+    position: relative;
+
+    &:nth-child(1) {
+        width: 80%;
+    }
+
+    &:nth-child(3) {
+        width: 60%;
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+
 }
 
 /*------------------------------------*\
